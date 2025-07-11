@@ -45,8 +45,8 @@ RENAME employee TO emp_data;
 DROP TABLE emp_data;
 
 --> 5.TURNCATE - to erase only data present in table
---> DROP TABLE table_name;
-TRUNCATE TABLE emp_data;
+--> TURNCATE TABLE table_name;
+TURNCATE TABLE emp_data;
 
 
 
