@@ -44,7 +44,7 @@ RENAME employee TO emp_data;
 --> TRUNCATE TABLE table_name;
 TRUNCATE TABLE emp_data;
 
---> 5. DROP - to delete entire object
+--> 5. DROP - to delete entire object;
 --> DROP TABLE table_name;
 DROP TABLE emp_data;
 
