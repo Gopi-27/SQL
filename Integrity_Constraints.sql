@@ -94,3 +94,22 @@ INSERT INTO emp(id) VALUES(3); -- Fails because name and mail is mandatory
 -- TO SEE THE ALL THE CONSTRAINTS
 SELECT constraint_name FROM  USER_CONSTRAINTS WHERE table_name = 'EMP';
 SELECT constraint_name,constraint_type FROM  USER_CONSTRAINTS WHERE table_name = 'EMP';
+
+
+
+-- > CHANGING CONTRAINT_NAMES
+CREATE TABLE employee(
+    e_id NUMBER,
+    e_name VARCHAR2(50) NOT NULL,
+    email VARCHAR2(100),
+    age NUMBER,
+    -- SYTAX : constraint constraint_name constraints_type();
+    CONSTRAINT pk_emp PRIMARY KEY(e_id),
+    CONSTRAINT mail_uq UNIQUE(email),
+    CONSTRAINT age_ck CHECK(age > 18)
+    
+);
+
+
+
+
