@@ -1,0 +1,87 @@
+-- STRING FUNCTIONS
+
+-- 1. CONCAT(str1, str2): 
+--> JOINS TWO STRINGS TOGETHER
+SELECT 'Alice' || ' From America' FROM dual;
+SELECT CONCAT('Alice',' From America') FROM dual;
+
+-- 2. INITCAP(str):
+--> CONVERTS FIRST LETTER OF EACH WORD TO UPPERCASE
+SELECT INITCAP('alice') FROM dual;
+SELECT INITCAP('alice from america') FROM dual;
+
+-- 3. LOWER(str):
+-- CONVERTS ALL LETTER IN A STRING TO LOWERCASE
+SELECT LOWER('Alice') FROM dual;
+SELECT LOWER('aLICE frOM AmericA') FROM dual;
+
+-- 4. UPPER(str):
+-- CONVERTS ALL LETTER IN A STRING TO UPPERCASE
+SELECT UPPER('Alice') FROM dual;
+SELECT UPPER('aLICE frOM AmericA') FROM dual;
+
+-- 5. LENGTH(str):
+-- RETURNS NUMBER OF CHARACTERS IN A STRING
+SELECT LENGTH('Alice'),LENGTH('Hello World') FROM dual;
+
+-- 6. SUBSTR(str, start, length):(ONE BASED INDEXED)
+-- EXTRACTS SUBSTRING FROM A STRING
+SELECT SUBSTR('Alice From America', 1) FROM dual;-- START TO END
+SELECT SUBSTR('Alice From America',4,5) FROM dual; -- ce Fr (FROM 4th INDEX 5 LENGTH STRING)
+SELECT SUBSTR('Alice From America',-3) FROM dual; -- LAST THREE CHARACTERS
+
+-- 7. INSTR(str, substring,start_from):
+-- RETURNS POSITION OF A SUBSTRING WITHIN A STRING
+SELECT INSTR('Alice From America Alice','Alice') FROM dual; -- SEARCH FROM START
+SELECT INSTR('Alice From America Alice','Alice',6) FROM dual;-- SEARCH FROM POSITION
+
+-- 8. REPLACE(str, search, replace_with):
+--  REPLACES OCCURRENCES OF A SUBSTRING
+SELECT REPLACE('Alice From America','Alice','Bob') FROM dual; -- Bob From America
+SELECT REPLACE('Alice From America Alice','Alice','Bob') FROM dual;-- Bob From America Bob
+
+-- 9. LPAD(str, length, pad_char):
+-- PADS STRING ON THE LEFT WITH CHARACTER TO A FIXED LENGTH
+SELECT LPAD('9',5,'0') FROM dual; -- 00009
+SELECT LPAD(9,5,0) FROM dual; -- 00009
+SELECT LPAD('708',5,'0') FROM dual; -- 00708
+
+-- 10. RPAD(str, length, pad_char):
+--  PADS STRING ON THE RIGHT WITH CHARACTER TO FIXED LENGTH
+SELECT RPAD('C123',6,'0') FROM dual;
+SELECT RPAD(C123,6,0) FROM dual; -- FAILS
+
+-- 11. LTRIM(str, trim_char):
+--  REMOVES SPECIFIED CHARACTERS FROM THE LEFT SIDE
+SELECT LTRIM('------Alice---','-') FROM dual;-- 'Alice---'
+SELECT LTRIM('  A. Alice') FROM dual; -- 'A. Alice' (BY DEFAULT IT REMOVES ' ')
+
+-- 12. RTRIM(str, trim_char):
+--  REMOVES SPECIFIED CHARACTER FROM THE RIGHT SIDE
+SELECT RTRIM('------Alice---','-') FROM dual;--> '------Alice'
+SELECT RTRIM('  A. Alice$$$$$','$') FROM dual; --> '  A. Alice'
+
+-- 13. TRIM(trim_char FROM str):
+-- REMOVES SPECIFIED CHARACTER (OR SPACES BY DEFAULT) FROM BOTH SIDES
+SELECT TRIM( '#' FROM '#####Alice$#####') FROM dual; -- 'Alice$'
+SELECT TRIM('  Alice  ') FROM dual; -- 'Alice'
+
+-- 14. TRANSLATE(str, from_chars, to_chars):
+--  REPLACES EACH CHARACTER IN FROM_CHARS WITH CORRESPOINDING ONE IN TO_CHARS
+SELECT TRANSLATE('ALICE FROM AMERICA','ABCDE','PQRST') FROM dual; 
+SELECT TRANSLATE('THIS -- IS -- ALICE',' -','@$') FROM dual;
+
+-- 15. REVERSE(str):
+-- RETURNS THE STRING IN REVERSE ORDER
+SELECT REVERSE('Alice') FROM dual;
+SELECT REVERSE('BoB') FROM dual;
+
+-- 16. CHR(n):
+-- RETURNS THE CHARACTER HAVING ASCII CODE N
+SELECT CHR(98) FROM dual;
+SELECT CHR(14725253) FROM dual; -- 'అ'
+
+-- 17. ASCII(str):
+-- RETURNS ASCII CODE OF FIRST CHARACTER
+SELECT ASCII('అ') FROM dual; -- 14725253
+SELECT ASCII('ABB') FROM dual;-- A -> 65
