@@ -58,7 +58,7 @@ CREATE TABLE courses(
     price NUMBER NOT NULL,
     durartion NUMBER NOT NULL
 );
---BDROP TABLE courses;
+--DROP TABLE courses;
 INSERT INTO courses VALUES(101,'C Programming',6000,180);
 INSERT INTO courses VALUES(102,'Python',7000,160);
 INSERT INTO courses VALUES(103,'Java',8000,200);
@@ -74,7 +74,42 @@ INSERT INTO student VALUES(1,'Alice','alice@gmail.com',19,101);
 INSERT INTO student VALUES(2,'Bob','bob@gmail.com',20,103);
 SELECT * FROM student;
 INSERT INTO student VALUES(3,'Charlie','charlie@gmail.com',18,106);--Falis
+ ============================================================================================================================================
+                                                            ADDITIONAL
+-- FOREIGN KEY WITH
+     -- i. ON DELETE CASCADE
+     -- ii. ON DELETE SET NULL
+-- i. ON DELETE CASCADE
+CREATE TABLE departments(
+    d_id NUMBER PRIMARY KEY,
+    d_name VARCHAR2(30) NOT NULL,
+    d_location VARCHAR2(40) NOT NULL
+);
 
+CREATE TABLE employee (
+    e_id NUMBER PRIMARY KEY,
+    e_name VARCHAR2(40) NOT NULL,
+    d_id NUMBER REFERENCES departments(d_id) ON DELETE CASCADE
+);
+-- IF YOU DELETE ANY DEPARTMENT FROM THE DEPARTMENTS TABLE THEN ALL THE EMPLOYEES
+-- BELONGS TO THAT DEPARTMENT IN THE EMPLOYEES TABLE ALSO GET DELETED DIRECTLY 
+
+-- II. ON DELETE SET NULL 
+CREATE TABLE departments(
+    d_id NUMBER PRIMARY KEY,
+    d_name VARCHAR2(30) NOT NULL,
+    d_location VARCHAR2(40) NOT NULL
+);
+
+CREATE TABLE employee (
+    e_id NUMBER PRIMARY KEY,
+    e_name VARCHAR2(40) NOT NULL,
+    d_id NUMBER REFERENCES departments(d_id) ON DELETE SET NULL
+);
+-- IF YOU DELETE ANY DEPARTMENT IN THE DEPARTMENTS TABLE THE DEPARTMET ID OF THE 
+-- EMPLOYEES BELONGS TO THAT DEPARTMENT IS TO NULL IN THE EMPLOYEES TABLE DIRECTLY
+
+     
 -- WE CAN USE MULTIPLE CONSTRIANTS FOR ONE COLUMN TOOO
 CREATE TABLE emp(
     id NUMBER PRIMARY KEY, -- Only one primary key for one table
@@ -86,16 +121,9 @@ INSERT INTO emp VALUES(1,'Alice','Alice@gmail.com',19); -- Works
 INSERT INTO emp VALUES(2,'Bob','Alice@gmail.com',18); -- Fails because mail should be unique  
 INSERT INTO emp(id) VALUES(3); -- Fails because name and mail is mandatory
 
-
-
-
-
-
 -- TO SEE THE ALL THE CONSTRAINTS
 SELECT constraint_name FROM  USER_CONSTRAINTS WHERE table_name = 'EMP';
 SELECT constraint_name,constraint_type FROM  USER_CONSTRAINTS WHERE table_name = 'EMP';
-
-
 
 -- > CHANGING CONTRAINT_NAMES
 CREATE TABLE employee(
